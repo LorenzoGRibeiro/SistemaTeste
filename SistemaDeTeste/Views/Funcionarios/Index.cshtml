@@ -1,0 +1,83 @@
+﻿<script>
+    function myFunction() {
+      // Declaração das  variaveis
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop entre todas as tabelas, e esconde oque não condiz com a pesquisa
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+</script>
+@model IEnumerable<SistemaDeTeste.Models.Funcionarios>
+
+@{
+    ViewData["Title"] = "Lista dos Funcionarios";
+}
+
+<h1>Lista de Funcionairos</h1>
+<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+
+    <label>Nome do Funcionário</label>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Pesquisa por nomes">
+</div>
+<br>
+<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <p>
+        <a class="btn btn-primary" role="button" asp-action="Create">Cadastrar Novo Funcionario</a>
+    </p>
+</div>
+
+<table class="table table-bordered border-primary" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataDeNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Atividade)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDeNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Atividade)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a> 
+                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
