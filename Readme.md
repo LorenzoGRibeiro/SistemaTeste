@@ -3,3 +3,4 @@ Olá, Meu nome é Lorenzo, fiz esta aplicação para o processo seletivo da Cont
 1. abra o arquivo do SistemaDeTeste
 2. va na pagina Program.cs
 3. procura a linha com o codigo UseSqlServer, e altere as informações de : Server= ; User ID = ; Password = ;
+4. Peço muitas desculpar por não ter conseguido enviar o banco de dados vinculado ao codigo está foi minha primeira vez mesmo fazendo um projeto com a necessidade de um banco de dados para rodar, mas se for preciso é so me mandar mensagem que eu envio o banco de dados todo feito já
